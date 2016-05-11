@@ -7,9 +7,12 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.unibratec.misael_junior.projetofilmes.database.FilmeDAO;
 import com.unibratec.misael_junior.projetofilmes.model.Filme;
 
 import org.parceler.Parcels;
@@ -36,7 +39,10 @@ public class DetalheFilmeFragment extends Fragment {
     TextView mTextClassificacao;
     @Bind(R.id.text_sinopse)
     TextView mTextSinopse;
+    @Bind(R.id.image_capa)
+    ImageView mImageCapa;
 
+    FilmeDAO mDAO;
 
     private Filme mFilme;
 
@@ -52,6 +58,7 @@ public class DetalheFilmeFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mDAO = new FilmeDAO(getActivity());
         if (getArguments() != null) {
             Parcelable p = getArguments().getParcelable(EXTRA_FILME);
             mFilme =  Parcels.unwrap(p);
@@ -71,6 +78,7 @@ public class DetalheFilmeFragment extends Fragment {
         mTextDuracao.setText(mFilme.getDuracao());
         mTextClassificacao.setText(mFilme.getClassificacao());
         mTextSinopse.setText(mFilme.getSinopse());
+        Glide.with(getActivity()).load(mFilme.getCapa()).into(mImageCapa);
         return view;
     }
 
@@ -84,6 +92,18 @@ public class DetalheFilmeFragment extends Fragment {
     public void meubotao(){
         Toast.makeText(getContext(), "Abrindo Página do Trailer", Toast.LENGTH_SHORT).show();;
        // Toast.makeText(mT)
+    }
+
+    @OnClick(R.id.fab_favorito)
+    public void favoritoClick(){
+        if (mDAO.isFavorito(mFilme)){
+            mDAO.excluir(mFilme);
+        } else {
+            mDAO.inserir(mFilme);
+        }
+
+        ((FilmeApp)getActivity().getApplication()).getEventBus().post(mFilme);
+
     }
 
 }

@@ -13,6 +13,8 @@ import android.widget.ListView;
 import com.unibratec.misael_junior.projetofilmes.database.FilmeDAO;
 import com.unibratec.misael_junior.projetofilmes.model.Filme;
 
+import org.greenrobot.eventbus.Subscribe;
+
 import java.util.List;
 
 import butterknife.Bind;
@@ -34,6 +36,14 @@ public class ListaFavoritoFragment extends Fragment {
         setReenterTransition(true);
         mDao = new FilmeDAO(getActivity());
         mFilmes = mDao.lista();
+
+        ((FilmeApp)getActivity().getApplication()).getEventBus().register(this);
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        ((FilmeApp)getActivity().getApplication()).getEventBus().unregister(this);
     }
 
     @Override
@@ -54,5 +64,13 @@ public class ListaFavoritoFragment extends Fragment {
             CliqueNoFilmeListener listener = (CliqueNoFilmeListener)getActivity();
             listener.filmeFoiClicado(filme);
         }
+    }
+
+    @Subscribe
+    public void atualizar(Filme filme){
+        mFilmes.clear();
+        mFilmes.addAll(mDao.lista());
+        mAdapter.notifyDataSetChanged();
+
     }
 }

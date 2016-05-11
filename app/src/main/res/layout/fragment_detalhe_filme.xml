@@ -1,49 +1,81 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context="com.unibratec.misael_junior.projetofilmes.DetalheFilmeFragment">
+    android:layout_height="match_parent">
 
-    <!-- TODO: Update blank fragment layout -->
+    <LinearLayout
+        android:layout_gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        tools:context="com.unibratec.misael_junior.projetofilmes.DetalheFilmeFragment">
+
+    <ImageView
+        android:layout_width="96dp"
+        android:layout_height="144dp"
+        android:id="@+id/image_capa"
+        android:gravity="center"/>
     <TextView
         android:id="@+id/text_nome"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:gravity="center"/>
 
     <TextView
         android:id="@+id/text_diretor"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:gravity="center"/>
 
     <TextView
         android:id="@+id/text_roteiro"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:gravity="center"/>
 
-    <TextView
+        <Button
+            android:id="@+id/meuBotao"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TRAILER DO FILME"
+            android:gravity="center"
+            android:layout_gravity="center_horizontal" />
+
+        <TextView
         android:id="@+id/text_ano"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:gravity="center"/>
 
     <TextView
         android:id="@+id/text_duracao"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:gravity="center"/>
 
     <TextView
         android:id="@+id/text_classificacao"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:gravity="center"/>
 
     <TextView
         android:id="@+id/text_sinopse"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:gravity="center"/>
 
-    <Button
-        android:id="@+id/meuBotao"
+    </LinearLayout>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab_favorito"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TRAILER DO FILME"/>
-</LinearLayout>
+        app:fabSize="normal"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="16dp"
+        android:layout_gravity="right|bottom" />
+
+</FrameLayout>

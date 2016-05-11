@@ -104,6 +104,26 @@ public class FilmeDAO {
         return filmes;
     }
 
+    public boolean isFavorito(Filme filme){
+
+        FilmeDbHelper helper = new FilmeDbHelper(mContext);
+        SQLiteDatabase db = helper.getReadableDatabase();
+
+        Cursor cursor = db.rawQuery(
+                "SELECT count(*) FROM " + FilmeContract.TABLE_NAME +
+                " WHERE " + FilmeContract.NOME + " = ?",
+                new String []{ filme.getNome() });
+
+        boolean existe = false;
+        if (cursor != null){
+            cursor.moveToNext();
+            existe = cursor.getInt(0) > 0;
+            cursor.close();
+        }
+        db.close();
+        return existe;
+    }
+
     private ContentValues valuesFromFilme(Filme filme){
         ContentValues values = new ContentValues();
         values.put(FilmeContract.NOME, filme.getNome());
