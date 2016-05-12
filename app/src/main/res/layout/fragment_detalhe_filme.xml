@@ -12,16 +12,7 @@
         android:orientation="vertical"
         tools:context="com.unibratec.misael_junior.projetofilmes.DetalheFilmeFragment">
 
-        <android.support.design.widget.FloatingActionButton
-            android:id="@+id/fab_favorito"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:fabSize="normal"
-            android:layout_marginRight="16dp"
-            android:layout_marginBottom="16dp"
-            android:layout_gravity="right" />
-
-        <ImageView
+    <ImageView
         android:layout_width="96dp"
         android:layout_height="144dp"
         android:id="@+id/image_capa"
@@ -30,6 +21,7 @@
         android:id="@+id/text_nome"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:text="Nome "
         android:gravity="center"/>
 
     <TextView
@@ -62,7 +54,7 @@
         android:layout_height="wrap_content"
         android:gravity="center"/>
 
-        <TextView
+    <TextView
         android:id="@+id/text_sinopse"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -77,5 +69,14 @@
             android:layout_gravity="center_horizontal" />
 
     </LinearLayout>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab_favorito"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:fabSize="normal"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="16dp"
+        android:layout_gravity="right|bottom" />
 
 </FrameLayout>
