@@ -16,6 +16,7 @@ public class FilmeApp extends Application{
         super.onCreate();
 
         eventBus = new EventBus();
+        //sdfdsfdsfdsdfsdfds
     }
 
     public EventBus getEventBus() {
