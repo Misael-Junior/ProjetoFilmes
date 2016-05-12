@@ -12,7 +12,16 @@
         android:orientation="vertical"
         tools:context="com.unibratec.misael_junior.projetofilmes.DetalheFilmeFragment">
 
-    <ImageView
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fab_favorito"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:fabSize="normal"
+            android:layout_marginRight="16dp"
+            android:layout_marginBottom="16dp"
+            android:layout_gravity="right" />
+
+        <ImageView
         android:layout_width="96dp"
         android:layout_height="144dp"
         android:id="@+id/image_capa"
@@ -35,14 +44,6 @@
         android:layout_height="wrap_content"
         android:gravity="center"/>
 
-        <Button
-            android:id="@+id/meuBotao"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="TRAILER DO FILME"
-            android:gravity="center"
-            android:layout_gravity="center_horizontal" />
-
         <TextView
         android:id="@+id/text_ano"
         android:layout_width="match_parent"
@@ -61,21 +62,20 @@
         android:layout_height="wrap_content"
         android:gravity="center"/>
 
-    <TextView
+        <TextView
         android:id="@+id/text_sinopse"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"/>
 
-    </LinearLayout>
+        <Button
+            android:id="@+id/meuBotao"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TRAILER DO FILME"
+            android:gravity="center"
+            android:layout_gravity="center_horizontal" />
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab_favorito"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:fabSize="normal"
-        android:layout_marginRight="16dp"
-        android:layout_marginBottom="16dp"
-        android:layout_gravity="right|bottom" />
+    </LinearLayout>
 
 </FrameLayout>
