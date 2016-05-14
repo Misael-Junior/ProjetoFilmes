@@ -21,6 +21,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".DetalheFilmeActivity"
+            android:label="@string/detalhe_activity_titulo"
             android:parentActivityName=".FilmeActivity">
             <meta-data android:name="parentActivityName"
                 android:value=".FilmeActivity"/>

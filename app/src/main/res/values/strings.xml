@@ -3,4 +3,15 @@
 
     <string name="aba_web">Web</string>
     <string name="aba_favorito">Favoritos</string>
+    
+    <string name="detalhe_activity_titulo">Destalhes do Filme</string>
+
+    <string name="formato_nome">Filme : %1$s</string>
+    <string name="formato_diretor">Diretor : %1$s</string>
+    <string name="formato_roteiro">Roteiro : %1$s</string>
+    <string name="formato_ano">Ano : %1$d</string>
+    <string name="formato_duracao">Duração : %1$s</string>
+    <string name="formato_classificacao">Classificação : %1$s</string>
+    <string name="formato_sinopse">Sinopse : %1$s</string>
+
 </resources>

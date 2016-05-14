@@ -3,6 +3,7 @@ package com.unibratec.misael_junior.projetofilmes;
 
 import android.os.Bundle;
 import android.os.Parcelable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -41,6 +42,8 @@ public class DetalheFilmeFragment extends Fragment {
     TextView mTextSinopse;
     @Bind(R.id.image_capa)
     ImageView mImageCapa;
+    @Bind(R.id.fab_favorito)
+    FloatingActionButton mFabFavorito;
 
     FilmeDAO mDAO;
 
@@ -71,15 +74,20 @@ public class DetalheFilmeFragment extends Fragment {
         View view =  inflater.inflate(R.layout.fragment_detalhe_filme, container, false);
         ButterKnife.bind(this, view);
 
-        mTextNome.setText(mFilme.getNome());
-        mTextDiretor.setText(mFilme.getDiretor());
-        mTextRoteiro.setText(mFilme.getRoteiro());
-        mTextAno.setText(String.valueOf(mFilme.getAno()));
-        mTextDuracao.setText(mFilme.getDuracao());
-        mTextClassificacao.setText(mFilme.getClassificacao());
-        mTextSinopse.setText(mFilme.getSinopse());
+        mTextNome.setText(getString(R.string.formato_nome,mFilme.getNome()));
+        mTextDiretor.setText(getString(R.string.formato_diretor,mFilme.getDiretor()));
+        mTextRoteiro.setText(getString(R.string.formato_roteiro,mFilme.getRoteiro()));
+        mTextAno.setText(String.valueOf(getString(R.string.formato_ano,mFilme.getAno())));
+        mTextDuracao.setText(getString(R.string.formato_duracao,mFilme.getDuracao()));
+        mTextClassificacao.setText(getString(R.string.formato_classificacao,mFilme.getClassificacao()));
+        mTextSinopse.setText(getString(R.string.formato_sinopse,mFilme.getSinopse()));
         Glide.with(getActivity()).load(mFilme.getCapa()).into(mImageCapa);
+        toggleFavorito();
         return view;
+    }
+
+    private void toggleFavorito(){
+        mFabFavorito.setImageResource(mDAO.isFavorito(mFilme) ? R.drawable.ic_remove : R.drawable.ic_check);
     }
 
     @Override
@@ -101,6 +109,8 @@ public class DetalheFilmeFragment extends Fragment {
         } else {
             mDAO.inserir(mFilme);
         }
+
+        toggleFavorito();
 
         ((FilmeApp)getActivity().getApplication()).getEventBus().post(mFilme);
 
