@@ -1,6 +1,8 @@
 package com.unibratec.misael_junior.projetofilmes;
 
 
+import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.design.widget.FloatingActionButton;
@@ -87,7 +89,12 @@ public class DetalheFilmeFragment extends Fragment {
     }
 
     private void toggleFavorito(){
-        mFabFavorito.setImageResource(mDAO.isFavorito(mFilme) ? R.drawable.ic_remove : R.drawable.ic_check);
+        boolean favorito = mDAO.isFavorito(mFilme);
+
+        mFabFavorito.setImageResource(
+                favorito ? R.drawable.ic_remove : R.drawable.ic_check);
+        mFabFavorito.setBackgroundTintList(
+        favorito ? ColorStateList.valueOf(Color.RED) : ColorStateList.valueOf(Color.GREEN));
     }
 
     @Override
