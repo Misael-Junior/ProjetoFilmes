@@ -12,14 +12,19 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".FilmeActivity"
-            android:theme="@style/AppTheme.NoTitle">
+            android:theme="@style/AppTheme.NoTitle"
+            android:launchMode="singleTop">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".DetalheFilmeActivity"></activity>
+        <activity android:name=".DetalheFilmeActivity"
+            android:parentActivityName=".FilmeActivity">
+            <meta-data android:name="parentActivityName"
+                android:value=".FilmeActivity"/>
+        </activity>
     </application>
 
 </manifest>
