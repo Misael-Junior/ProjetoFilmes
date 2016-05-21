@@ -1,13 +1,19 @@
 package com.unibratec.misael_junior.projetofilmes;
 
 
+import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.MenuItemCompat;
+import android.support.v7.widget.ShareActionProvider;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -47,6 +53,8 @@ public class DetalheFilmeFragment extends Fragment {
     @Bind(R.id.fab_favorito)
     FloatingActionButton mFabFavorito;
 
+    private ShareActionProvider mShareActionProvider;
+
     FilmeDAO mDAO;
 
     private Filme mFilme;
@@ -63,6 +71,7 @@ public class DetalheFilmeFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
         mDAO = new FilmeDAO(getActivity());
         if (getArguments() != null) {
             Parcelable p = getArguments().getParcelable(EXTRA_FILME);
@@ -88,13 +97,28 @@ public class DetalheFilmeFragment extends Fragment {
         return view;
     }
 
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        inflater.inflate(R.menu.menu_detalhe, menu);
+
+        MenuItem item = menu.findItem(R.id.menu_item_share);
+
+        mShareActionProvider = (ShareActionProvider) MenuItemCompat.getActionProvider(item);
+
+        Intent it = new Intent(Intent.ACTION_SEND);
+        it.putExtra(Intent.EXTRA_TEXT, mFilme.getNome());
+        it.setType("text/plain");
+        mShareActionProvider.setShareIntent(it);
+    }
+
     private void toggleFavorito(){
         boolean favorito = mDAO.isFavorito(mFilme);
 
         mFabFavorito.setImageResource(
                 favorito ? R.drawable.ic_remove : R.drawable.ic_check);
         mFabFavorito.setBackgroundTintList(
-        favorito ? ColorStateList.valueOf(Color.RED) : ColorStateList.valueOf(Color.GREEN));
+        favorito ? ColorStateList.valueOf(Color.RED) : ColorStateList.valueOf(Color.BLUE));
     }
 
     @Override
