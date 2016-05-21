@@ -1,6 +1,8 @@
 package com.unibratec.misael_junior.projetofilmes;
 
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
@@ -140,9 +142,16 @@ public class DetalheFilmeFragment extends Fragment {
         } else {
             mDAO.inserir(mFilme);
         }
-
-        toggleFavorito();
-
+        mFabFavorito.animate()
+                .scaleX(0)
+                .scaleY(0).setListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                super.onAnimationEnd(animation);
+                toggleFavorito();
+                mFabFavorito.animate().scaleX(1).scaleY(1).setListener(null);
+            }
+        });
         ((FilmeApp)getActivity().getApplication()).getEventBus().post(mFilme);
 
     }

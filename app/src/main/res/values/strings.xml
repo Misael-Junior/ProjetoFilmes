@@ -15,4 +15,6 @@
     <string name="formato_sinopse">Sinopse : %1$s</string>
 
     <string name="compartilhar">Compartilhar</string>
+
+    <string name="erro_conexao">Sem conexão no momento, por favor tente mais tarde.</string>
 </resources>

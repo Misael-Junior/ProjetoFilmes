@@ -1,6 +1,9 @@
 package com.unibratec.misael_junior.projetofilmes;
 
 
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -12,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.unibratec.misael_junior.projetofilmes.model.Filme;
@@ -60,8 +64,7 @@ public class ListaFilmeFragment extends Fragment {
         mSwipe.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                mTask = new FilmesTask();
-                mTask.execute();
+                baixarJson();
             }
         });
         return  layout;
@@ -71,10 +74,22 @@ public class ListaFilmeFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         if (mFilmes.size() == 0 && mTask == null) {
-            mTask = new FilmesTask();
-            mTask.execute();
+            baixarJson();
         } else if (mTask != null && mTask.getStatus() == AsyncTask.Status.RUNNING){
             mSwipe.setRefreshing(true);
+        }
+    }
+
+    private void baixarJson(){
+        ConnectivityManager cm = (ConnectivityManager)
+                getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo info = cm.getActiveNetworkInfo();
+        if(info != null && info.isConnected()) {
+            mTask = new FilmesTask();
+            mTask.execute();
+        }else{
+            mSwipe.setRefreshing(false);
+            Toast.makeText(getActivity(), R.string.erro_conexao, Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -139,6 +154,11 @@ public class ListaFilmeFragment extends Fragment {
                 }
 
                 mAdapter.notifyDataSetChanged();
+
+                //Para a tela to tablete selecionar o primeiro item.
+                if (getResources().getBoolean(R.bool.tablet) && mFilmes.size() > 0){
+                    onItemSelected(0);
+                }
             }
 
             mSwipe.setRefreshing(false);
