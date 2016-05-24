@@ -17,4 +17,6 @@
     <string name="compartilhar">Compartilhar</string>
 
     <string name="erro_conexao">Sem conexão no momento, por favor tente mais tarde.</string>
+
+    <string name="lista_vazia">Sem dados para exibir!!!</string>
 </resources>

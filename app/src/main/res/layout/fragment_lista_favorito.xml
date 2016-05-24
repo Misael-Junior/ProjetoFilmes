@@ -4,6 +4,8 @@
     android:layout_height="match_parent"
     tools:context="com.unibratec.misael_junior.projetofilmes.ListaFilmeFragment">
 
+    <include layout="@layout/empty_list"/>
+
     <ListView
         android:id="@+id/list_filme"
         android:layout_width="match_parent"

@@ -39,6 +39,9 @@ public class ListaFilmeFragment extends Fragment {
     @Bind(R.id.swipe)
     SwipeRefreshLayout mSwipe;
 
+    @Bind(R.id.empty)
+    View mEmpty;
+
     List<Filme> mFilmes;
 
     ArrayAdapter<Filme> mAdapter;
@@ -59,6 +62,9 @@ public class ListaFilmeFragment extends Fragment {
         ButterKnife.bind(this, layout);
 
         mAdapter = new FilmesAdapter(getContext(), mFilmes);
+
+        mListView.setEmptyView(mEmpty);
+
         mListView.setAdapter(mAdapter);
 
         mSwipe.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {

@@ -26,6 +26,9 @@ public class ListaFavoritoFragment extends Fragment {
     @Bind(R.id.list_filme)
     ListView mListView;
 
+    @Bind(R.id.empty)
+    View mEmpty;
+
     List<Filme> mFilmes;
     ArrayAdapter<Filme> mAdapter;
     FilmeDAO mDao;
@@ -53,6 +56,9 @@ public class ListaFavoritoFragment extends Fragment {
         ButterKnife.bind(this, layout);
 
         mAdapter = new FilmesAdapter(getContext(), mFilmes);
+
+        mListView.setEmptyView(mEmpty);
+
         mListView.setAdapter(mAdapter);
         return  layout;
     }
