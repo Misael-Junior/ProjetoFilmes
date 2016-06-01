@@ -7,6 +7,8 @@ import android.database.sqlite.SQLiteOpenHelper;
 /**
  * Created by misael-junior on 02/05/16.
  */
+
+//DbHelper responsável por criar o banco de dados.
 public class FilmeDbHelper extends SQLiteOpenHelper{
 
     public static final int DB_VERSION = 1;
@@ -16,6 +18,7 @@ public class FilmeDbHelper extends SQLiteOpenHelper{
         super(context, DB_NAME, null, DB_VERSION);
     }
 
+    //Reponsavél por criar a tabela do banco de dados.
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("CREATE TABLE "+ FilmeContract.TABLE_NAME +" (" +
@@ -31,6 +34,7 @@ public class FilmeDbHelper extends SQLiteOpenHelper{
 
     }
 
+    //Chamado só se tiver alteração no banco de dados e tabela.
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 
